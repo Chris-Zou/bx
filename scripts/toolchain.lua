@@ -184,7 +184,7 @@ function toolchain(_buildDir, _libDir)
 		tvosPlatform = _OPTIONS["with-tvos"]
 	end
 
-	local windowsPlatform = string.gsub(os.getenv("WindowsSDKVersion") or "8.1", "\\", "")
+	local windowsPlatform = string.gsub(os.getenv("WindowsSDKVersion") or "10.0.17763.0", "\\", "")
 	if _OPTIONS["with-windows"] then
 		windowsPlatform = _OPTIONS["with-windows"]
 	end
@@ -596,6 +596,7 @@ function toolchain(_buildDir, _libDir)
 		objdir (path.join(_buildDir, "win32_" .. _ACTION, "obj"))
 		libdirs {
 			path.join(_libDir, "lib/win32_" .. _ACTION),
+			path.join(_buildDir, "win32_" .. _ACTION, "bin"),
 		}
 
 	configuration { "x64", "vs2017" }
@@ -604,6 +605,7 @@ function toolchain(_buildDir, _libDir)
 		objdir (path.join(_buildDir, "win64_" .. _ACTION, "obj"))
 		libdirs {
 			path.join(_libDir, "lib/win64_" .. _ACTION),
+			path.join(_buildDir, "win64_" .. _ACTION, "bin"),
 		}
 
 	configuration { "ARM", "vs*" }
